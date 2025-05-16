@@ -172,19 +172,18 @@ document.addEventListener('DOMContentLoaded', function() {
       // Handle success
       form.reset();
       
-      // If success message element exists, show it; otherwise create it
-      if (successMessage) {
-        form.classList.add('hidden');
-        successMessage.classList.remove('hidden');
-      } else {
-        // Create a success message dynamically
-        const successDiv = document.createElement('div');
-        successDiv.id = 'successMessage';
-        successDiv.className = 'success-message';
-        successDiv.innerHTML = '<h3>Thank you!</h3><p>Your message has been sent successfully.</p>';
-        form.parentNode.insertBefore(successDiv, form.nextSibling);
-        form.style.display = 'none';
-      }
+      // Show temporary success message without hiding the form
+      const tempSuccessMessage = document.createElement('div');
+      tempSuccessMessage.className = 'temp-success-message';
+      tempSuccessMessage.innerHTML = '<p>Thank you! Your message has been sent successfully.</p>';
+      
+      // Insert the message before the form
+      form.insertAdjacentElement('beforebegin', tempSuccessMessage);
+      
+      // Remove the message after 5 seconds
+      setTimeout(() => {
+        tempSuccessMessage.remove();
+      }, 5000);
     } catch (error) {
       console.error('Error:', error);
       alert('Sorry, there was an error submitting your form: ' + error.message);
