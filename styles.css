@@ -951,7 +951,17 @@ section.privacy {
 }
 
 
-
+.hidden {
+    display: none;
+}
+  
+.success-message {
+    text-align: center;
+    padding: 20px;
+    background-color: #f8f9fa;
+    border-radius: 5px;
+    margin-top: 20px;
+}
 
 
 
